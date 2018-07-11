@@ -1,3 +1,4 @@
+// Common module shared across components.
 // One central place that maintains the query selectors.
 export const elements = {
     searchForm: document.querySelector('.search'),
@@ -10,3 +11,26 @@ export const elements = {
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list')
 };
+
+// infinite animation logic added to the loader class in CSS
+export const elementStrings = {
+    loader: 'loader'
+};
+
+// Resuable spinner loader method - used on list and details section till data is loaded  
+export const renderSpinnerLoader = (parent) => {
+    const loader = `
+        <div class="${elementStrings.loader}">
+            <svg>
+                <use href="img/icons.svg#icon-cw"></use>
+            </svg>
+        </div>
+    `;
+    parent.insertAdjacentHTML('afterbegin', loader);
+};
+
+// Clear spinnerloader animation once the data is loaded on to the view
+export const clearSpinnerLoader = () => {
+    const loader = document.querySelector(`.${elementStrings.loader}`);
+    if (loader) loader.parentElement.removeChild(loader);
+}
