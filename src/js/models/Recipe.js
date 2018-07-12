@@ -21,4 +21,17 @@ export default class Recipe {
             alert('Something went wrong :(');
         }
     }
+    
+    // Rough calculation of cooking time bassed on the ingredients recieved from the server.
+    calculateCookingTime() {
+        // Assumption: 15 min for each 3 ingredients
+        const numIng = this.ingredients.length;
+        const periods = Math.ceil(numIng / 3);
+        this.time = periods * 15;
+    }
+
+    calculateServings() {
+        // Assumption - 4 servings for each of the recipe
+        this.servings = 4;
+    }
 }
