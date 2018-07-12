@@ -2,6 +2,7 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import { elements, renderSpinnerLoader, clearSpinnerLoader } from './views/base';
+import Recipe from './models/Recipe';
 
 global._babelPolyfill = false;
 
@@ -73,3 +74,12 @@ elements.searchResPages.addEventListener('click', el => {
         searchView.renderResults(state.search.result, goToPage);
     }
 });
+
+
+/** 
+ * RECIPE CONTROLLER
+ */
+
+const recipeDetail= new Recipe(54363);
+recipeDetail.getRecipe();
+console.log(recipeDetail);
