@@ -98,11 +98,16 @@ const recipeDetailController = async () => {
             // 3. Get recipe data from the server
             await state.recipe.getRecipe();
 
+            // Call the parser that converts ingredients(which is in one string) to an object of count,unit and ingredient 
+            // "1/4 cup Sugar" becomes {count: 0.25, unit: "cup", ingredient: "sugar"}
+            state.recipe.parseIngredients();
+
             // 4. Calculate servings and time
             state.recipe.calculateCookingTime();
             state.recipe.calculateServings();
 
             // 5. Render recipe
+            clearSpinnerLoader();
             console.log(state.recipe);
         } catch (err) {
             alert('Something went wrong processing the recipe data...');
