@@ -79,29 +79,36 @@ const createButton = (page, type) => `
 `;
 
 const renderButtons = (currentPageNum, resultPerPage, resultCount) => {
+
     // Find out how many pages
     const totalPages = Math.ceil(resultCount / resultPerPage);
 
+    //If there is only one page of results , render no pagination buttons
+    if (totalPages === 1) {
+        return;
+    }
     // create Button element based on the pagination deails
     let buttonEl;
-    if (currentPageNum === 1 && totalPages > 1) {
+    if (currentPageNum === 1) {
         // User currently on the First page and tehre are more pages to go - Show only one button: to go to next page 
         buttonEl = createButton(currentPageNum, 'next');
     }
-    else if (currentPageNum < totalPages) {
+    else if (currentPageNum === totalPages) { 
+        // Last page - Show only one button: to go to previous page 
+        buttonEl = createButton(currentPageNum, 'prev');
+    }
+    else {
         // somewhere in the middle - show 2 buttons. Prev and Next
         buttonEl = `
         ${createButton(currentPageNum, 'prev')}
         ${createButton(currentPageNum, 'next')}
     `;
     }
-    else if (currentPageNum === totalPages && totalPages > 1) { // Last page - Show only one button: to go to previous page 
-        buttonEl = createButton(currentPageNum, 'prev');
-    }
-
+          
     // Display the button on the UI
     elements.searchResPages.insertAdjacentHTML('afterbegin', buttonEl);
 }
+
 // Printing the recipe list received from the server to the UI
 export const renderResults = (recipes, currentPageNum = 1, resultPerPage = 10) => {
     // If no recipes found, show the error message.
@@ -112,7 +119,7 @@ export const renderResults = (recipes, currentPageNum = 1, resultPerPage = 10) =
     else {
         // Caculate start and end record poninter based on the input page numbers
         const start = (currentPageNum - 1) * resultPerPage; // array index - zero basedd
-        const end = currentPageNum + resultPerPage;
+        const end = currentPageNum * resultPerPage;
 
         // Slice array to pick elements from start to end and process rendering for those records only
         // For each recipe, form HTML markup to show on Ui
