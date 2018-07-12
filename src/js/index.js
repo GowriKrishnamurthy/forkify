@@ -18,7 +18,7 @@ const state = {};
  * SEARCH CONTROLLER
  */
 // Call back function 
-const controlSearch = async () => {
+const searchController = async () => {
     // 1. Get the query from view
     const query = searchView.getInput();
 
@@ -46,7 +46,6 @@ const controlSearch = async () => {
             alert('Something wrong with the search...');
             clearSpinnerLoader();
         }
-
     }
 };
 
@@ -54,7 +53,7 @@ const controlSearch = async () => {
 elements.searchForm.addEventListener('submit', el => {
     // Prevent the default action like page reload,etc
     el.preventDefault();
-    controlSearch();
+    searchController();
 });
 
 // Add click event listeners to the pagination buttons
@@ -80,6 +79,38 @@ elements.searchResPages.addEventListener('click', el => {
  * RECIPE CONTROLLER
  */
 
+/* Test code
 const recipeDetail= new Recipe(54363);
 recipeDetail.getRecipe();
 console.log(recipeDetail);
+*/
+const recipeDetailController = async () => {
+    // Get the hash ID from the URL, excluding the # symbol
+    const reciepId = window.location.hash.replace('#', '');
+
+    if (reciepId) {
+        // 1. Prepare UI for changes
+
+        // 2. Create new recipe object and add to recipe member of Global app State variable.
+        state.recipe = new Recipe(reciepId);
+
+        try {
+            // 3. Get recipe data from the server
+            await state.recipe.getRecipe();
+
+            // 4. Calculate servings and time
+            state.recipe.calculateCookingTime();
+            state.recipe.calculateServings();
+
+            // 5. Render recipe
+            console.log(state.recipe);
+        } catch (err) {
+            alert('Something went wrong processing the recipe data...');
+            clearSpinnerLoader();
+        }
+    }
+}
+// Whenever page loads or hash data changes - call the recipe detail controller
+// window.addEventListener('hashchange', recipeDetailController);
+// window.addEventListener('load', recipeDetailController);
+['hashchange', 'load'].forEach(event => window.addEventListener(event, recipeDetailController));
