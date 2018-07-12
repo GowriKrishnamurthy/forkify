@@ -1,8 +1,9 @@
 // Global app controller
-import Search from './models/Search';
-import * as searchView from './views/searchView';
 import { elements, renderSpinnerLoader, clearSpinnerLoader } from './views/base';
+import Search from './models/Search';
 import Recipe from './models/Recipe';
+import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 global._babelPolyfill = false;
 
@@ -90,6 +91,9 @@ const recipeDetailController = async () => {
 
     if (reciepId) {
         // 1. Prepare UI for changes
+        // Attach renderSpinnerLoader to this recipe element
+        recipeView.clearResults();
+        renderSpinnerLoader(elements.recipe);
 
         // 2. Create new recipe object and add to recipe member of Global app State variable.
         state.recipe = new Recipe(reciepId);
@@ -108,7 +112,8 @@ const recipeDetailController = async () => {
 
             // 5. Render recipe
             clearSpinnerLoader();
-            console.log(state.recipe);
+            recipeView.renderRecipe(state.recipe);
+
         } catch (err) {
             alert('Something went wrong processing the recipe data...');
             clearSpinnerLoader();
