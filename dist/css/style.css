@@ -79,7 +79,7 @@ body {
   color: #24a7ec;
   font-size: 1.2rem;
   border: none;
-  background-color: #F9F5F3;
+  background-color: #eff9fe;
   padding: .8rem 1.2rem;
   border-radius: 10rem;
   cursor: pointer;
@@ -157,7 +157,7 @@ body {
 
 .header {
   grid-area: head;
-  background-color: #F9F5F3;
+  background-color: #eff9fe;
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -239,11 +239,11 @@ body {
     text-decoration: none; }
   .results__link:hover,
   .likes__link:hover {
-    background-color: #F9F5F3;
+    background-color: #fbe2cc;
     transform: translateY(-2px); }
   .results__link--active,
   .likes__link--active {
-    background-color: #F9F5F3; }
+    background-color: #eff9fe; }
   .results__fig,
   .likes__fig {
     flex: 0 0 5.5rem;
@@ -262,7 +262,7 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      background-image: linear-gradient(to right bottom, #FBDB89, #fbe2cc);
+      background-image: linear-gradient(to right bottom); 
       opacity: .4; }
     .results__fig img,
     .likes__fig img {
@@ -302,7 +302,7 @@ body {
     float: right; }
 
 .recipe {
-  background-color: #F9F5F3;
+  background-color: #eff9fe;
   border-top: 1px solid #fff; }
   .recipe__fig {
     height: 30rem;
@@ -344,7 +344,7 @@ body {
   .recipe__details {
     display: flex;
     align-items: center;
-    padding: 8rem 3rem 3rem 3rem; }
+    padding: 5rem 2rem 2rem 2rem; }
   .recipe__info {
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -392,10 +392,10 @@ body {
       width: 2.75rem;
       fill: #fff; }
   .recipe__ingredients {
-    padding: 4rem 5rem;
+    padding: 2rem 3rem;
     font-size: 1.5rem;
     line-height: 1.4;
-    background-color: #F2EFEE;
+    background-color: #fbe2cc;
     display: flex;
     flex-direction: column;
     align-items: center; }
@@ -422,8 +422,8 @@ body {
     margin-right: .5rem;
     flex: 0 0 auto; }
   .recipe__directions {
-    padding: 4rem;
-    padding-bottom: 5rem;
+    padding: 2rem;
+    padding-bottom: 1rem; 
     display: flex;
     flex-direction: column;
     align-items: center; }
@@ -431,10 +431,10 @@ body {
     font-size: 1.5rem;
     text-align: center;
     width: 90%;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     color: #968B87; }
   .recipe__by {
-    font-weight: 700; }
+    font-weight: 500; }
 
 .shopping {
   padding: 3rem 4rem;

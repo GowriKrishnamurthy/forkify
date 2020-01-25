@@ -3,7 +3,6 @@ import { elements } from './base';
 // Clear the results page
 export const clearResults = () => {
     elements.recipe.innerHTML = '';
-    elements.searchResPages.innerHTML = '';
 }
 
 const createIngredient = ingredient => `
@@ -11,7 +10,7 @@ const createIngredient = ingredient => `
         <svg class="recipe__icon">
             <use href="img/icons.svg#icon-check"></use>
         </svg>
-        <div class="recipe__count">${ingredient.count}</div>
+        <div class="recipe__count">${Math.ceil(ingredient.count)}</div>
         <div class="recipe__ingredient">
             <span class="recipe__unit">${ingredient.unit}</span>
             ${ingredient.ingredient}
